@@ -9,7 +9,7 @@ def main():
     scripts = []
     for arg in args:
         arg = arg.strip()
-        if arg.lower().endswith("-a"):
+        if arg.lower().endswith("-all"):
             scripts.append({'script': arg[:-2], 'is_all': True})
         else:
             scripts.append({'script': arg, 'is_all': False})
