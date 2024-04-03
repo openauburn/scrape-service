@@ -1,9 +1,0 @@
-#!/bin/bash -x
-# Run this script to start the development environment for scrape-service
-PWD=`pwd`
-activate () {
-    . $PWD/.venv/bin/activate
-    source $PWD/.env.dev
-}
-
-activate

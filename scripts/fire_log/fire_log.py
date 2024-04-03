@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import util.safety_format as safety_format
 import util.geocode as geocode
+
 def scrape(latest, r):
 
     url = 'https://auburn.edu/administration/campus-safety/reports/fire/index.php?_search=&action=search&_csrf='

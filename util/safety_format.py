@@ -11,14 +11,14 @@ def string_format(string, r):
 def date_format(mm_dd_yyyy, r):
     try:
         date = datetime.strptime(mm_dd_yyyy, "%m/%d/%Y")
-        return datetime.strftime(date, "%m-%d-%Y")
+        return datetime.strftime(date, "%Y-%m-%d")
     except Exception as err:
         r.errors.append({
             "message": f"Failure while processing date {mm_dd_yyyy}",
-            "message_ext": err, 
+            "message_ext": str(err), 
             "occurred_at": datetime.strftime(datetime.now(), err_dt)
         })
-        return "00-00-0000"
+        return "1970-01-01"
         
 def time_format(hh_mm, r):
     try:
@@ -26,7 +26,7 @@ def time_format(hh_mm, r):
         return datetime.strftime(time, "%H:%M")
     except Exception as err:
         r.errors.append({"message": f"Failure while processing time {hh_mm}",
-            "message_ext": err, 
+            "message_ext": str(err), 
             "occurred_at": datetime.strftime(datetime.now(), err_dt)})
         return "00:00"
 

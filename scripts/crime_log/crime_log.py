@@ -10,8 +10,6 @@ def scrape(latest, r):
     url = 'https://iss.auburn.edu/crimelog/index.php?_offset=0&'
     url_all = 'https://iss.auburn.edu/crimelog/index.php?_pagination_off=1&'
 
-    # DRIVER_PATH = os.getenv('CHROME_DRIVER_PATH')
-
     driver = webdriver.Chrome()
     driver.get(url_all)
 
@@ -50,7 +48,7 @@ def scrape(latest, r):
     c = 0
     records = []
 
-    for row in rows[0:10]: # For each incident
+    for row in rows: # For each incident
 
         fields = row.find_elements(By.TAG_NAME, 'td')
 
