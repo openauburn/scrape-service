@@ -4,13 +4,17 @@ import subprocess
 import data_access
 from util.report import Report
 
+from datetime import datetime
+
+import json
+
 def main():
     args = sys.argv[1:]
     scripts = []
     for arg in args:
         arg = arg.strip()
         if arg.lower().endswith("-all"):
-            scripts.append({'script': arg[:-2], 'is_all': True})
+            scripts.append({'script': arg[:-4], 'is_all': True})
         else:
             scripts.append({'script': arg, 'is_all': False})
 
@@ -24,6 +28,13 @@ def main():
         script_func = importlib.import_module("scripts." + script_name + "." + script_name)
         scrape_results = script_func.scrape(latest, r)
         data_access.publish_data(script_name, scrape_results, r)
+        
+        with open('report_{}.json'.format(script_name + str(datetime.now())), 'w', encoding='utf-8') as f:
+            json.dump(r.errors, f, ensure_ascii=False, indent=4)
+
+        with open('data_{}.json'.format(script_name + str(datetime.now())), 'w', encoding='utf-8') as f:
+            json.dump(scrape_results, f, ensure_ascii=False, indent=4)
+
     
     return 0
 
