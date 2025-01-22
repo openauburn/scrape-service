@@ -2,6 +2,7 @@ import requests
 from datetime import datetime
 import os
 from urllib.parse import urljoin
+from tqdm import tqdm
 
 STEP = 100
 da_url = os.environ.get("DATA_ACCESS_URL")
@@ -15,7 +16,7 @@ def publish(endpoint, body):
 
 
 def publish_data(dataset, data, r):
-    for i in range(0, len(data), STEP):
+    for i in tqdm(range(0, len(data), STEP)):
         to_push = data[i : i + STEP]
         resp = publish(f"/datasets/{dataset}", to_push)
         if resp.status_code != 200:
