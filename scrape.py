@@ -37,14 +37,14 @@ def main():
             data_access.publish_data(script_name, scrape_results, r)
 
             with open(
-                "report_{}.json".format(script_name + str(datetime.now())),
+                ".log/report_{}.json".format(script_name + str(datetime.now())),
                 "w",
                 encoding="utf-8",
             ) as f:
                 json.dump(r.errors, f, ensure_ascii=False, indent=4)
 
             with open(
-                "data_{}.json".format(script_name + str(datetime.now())),
+                ".log/data_{}.json".format(script_name + str(datetime.now())),
                 "w",
                 encoding="utf-8",
             ) as f:
